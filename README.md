@@ -1,75 +1,74 @@
-# 📈 BCRP Exchange Rate & Inflation Dashboard - Data Pipeline
-
-![Data Engineering](https://img.shields.io/badge/Data%20Engineering-ETL-blue)
-![Python](https://img.shields.io/badge/Python-Pandas-green)
-![Economics](https://img.shields.io/badge/Econometrics-OLS%20Regression-red)
-![JavaScript](https://img.shields.io/badge/Frontend-HTML%2FJS-yellow)
-
-🌍 **[View Live Premium Dashboard (Ver Dashboard Interactivo)](https://jairtarrilloecon.github.io/bcrp-exchange-rate-dashboard/dashboard/)**
-
-## 🇺🇸 Project Summary (English)
-In this Data Engineering and Economics project, I built an automated Data Pipeline (ETL) to connect directly to the **Central Reserve Bank of Peru (BCRP)** public API. 
-
-The goal was to extract historical macroeconomics data —specifically the USD/PEN Exchange Rate and the Consumer Price Index (Inflation)— to measure the **Pass-through effect**. We mathematically studied how an increase in the exchange rate impacts domestic inflation using **Econometrics (OLS Regression and Lag Analysis)**. 
-
-To bring these findings to life, I built a premium, real-time interactive Dashboard hosted entirely on GitHub Pages without a backend. The whole ecosystem is automated with a CI/CD pipeline (GitHub Actions) to fetch fresh data every day.
+<div align="center">
+  <b>🌍 Idiomas / Languages:</b><br>
+  <a href="#-español">🇪🇸 Español</a> | <a href="#-english">🇺🇸 English</a>
+</div>
 
 ---
 
-## 🇪🇸 Resumen del Proyecto (Español)
-En este proyecto de Ingeniería de Datos y Economía, construí un Pipeline ETL automatizado para conectarme directamente a la API pública del **Banco Central de Reserva del Perú (BCRP)**.
+## 🇪🇸 Español
 
-El objetivo fue extraer datos macroeconómicos históricos —específicamente el Tipo de Cambio (USD/PEN) y el Índice de Precios al Consumidor (Inflación)— para medir el **efecto Pass-through**. Estudiamos matemáticamente cómo un aumento en el tipo de cambio impacta la inflación doméstica utilizando **Econometría (Regresión OLS y Análisis de Rezagos)**.
+# Pipeline BCRP & Dashboard de Inflación 📈💸
+[![Live Dashboard](https://img.shields.io/badge/Ver_Dashboard-Live-success?style=for-the-badge&logo=github)](https://jairtarrilloecon.github.io/bcrp-exchange-rate-dashboard/dashboard/)
 
-Para materializar estos hallazgos, desarrollé un Dashboard interactivo de nivel premium y en tiempo real, alojado completamente en GitHub Pages sin necesidad de un backend. Todo este ecosistema está automatizado mediante un pipeline CI/CD (GitHub Actions) para inyectar datos frescos diariamente.
+**Un pipeline ETL en Python y un modelo econométrico para medir el efecto 'Pass-through' (Tipo de Cambio a Inflación) usando datos en tiempo real del BCRP.**
 
----
+> Diseñado para analizar macroeconómicamente el impacto del dólar en la economía peruana y presentar los datos en un Premium Glassmorphism Dashboard alojado completamente sin necesidad de servidores.
 
-## 🏗️ Architecture & Technical Phases / Arquitectura de este Pipeline
+### 📌 Resumen del Proyecto
+La economía peruana está parcialmente dolarizada, lo que genera que los shocks del Tipo de Cambio (USD/PEN) tengan el potencial de transferirse hacia el Índice de Precios al Consumidor (Inflación). Este proyecto implementa un Pipeline ETL automatizado que se conecta directamente a la API pública del Banco Central de Reserva del Perú (BCRP). Estudiamos matemáticamente este efecto utilizando **Econometría (Regresión OLS y Análisis de Rezagos)** y finalmente inyectamos nuestros propios insights en un Dashboard HTML estático que se actualiza día a día.
 
-El proceso fue dividido en áreas clave:
+#### ⚙️ Arquitectura & Funciones Clave
+- **Extract (Extracción BCRP):** Script de extracción optimizado que sortea esquemas SSL del BCRP y estandariza las respuestas anidadas JSON hacia Tablas de Series de Tiempo con Pandas.
+- **Analyze (Modelado OLS & Pass-Through):** Análisis por Mínimos Cuadrados Ordinarios usando la librería `statsmodels`. Se demostró y visualizó que el pico de impacto económico sobre la inflación ocurre a los **4 meses** exactos tras un shock cambiario.
+- **Automate & Serve:** Creación de un Dashboard UI/UX moderno empleando `ApexCharts`. La actualización está 100% automatizada vía `GitHub Actions` con Python encargándose de compilar e inyectar métricas directamente al DOM estático.
 
-### 1️⃣ Extract (Extracción automatizada)
-* Lectura directa desde el endpoint de la API BCRP (Serie `PN01206PM` y `PN01273PM`).
-* Configuración de peticiones sorteando errores de certificados SSL (Python `requests`).
-* Parsing profundo de estructuras JSON y estandarización hacia DataFrames tabulares.
+### 🛠️ Tecnologías Empleadas
+- **Ingeniería de Datos:** `Python 3.x`, `Pandas`, `requests`
+- **Modelado Econométrico:** `statsmodels`, `Matplotlib`, `Seaborn`
+- **Desarrollo Frontend:** `HTML5`, `Vanilla JS`, `ApexCharts`, `CSS Glassmorphism`
+- **Cloud & Automation:** `GitHub Actions`, `GitHub Pages`
 
-### 2️⃣ Analyze & Model (Modelado Econométrico en Pandas)
-* **Time Normalization:** Conversión dinámica de fechas en formato `Ene.2014` hacia el estándar ISO (Datetime).
-* **OLS Regression:** Regresión por Mínimos Cuadrados Ordinarios usando la librería `statsmodels` para probar la significancia estadística.
-* **Lag Analytics:** Cálculo iterativo de efectos rezagados (Lags 1 al 6), descubriendo que el pico crítico de inflación ocurre en el **cuarto mes** posterior a la devaluación cambiaria.
-
-### 3️⃣ Automate & Serve (Dashboard y GitHub Actions)
-* **Generador de Dashboard (`Python`):** Un script que consume los notebooks y "inyecta" los DataFrames de forma automatizada (como objetos JSON) directamente en el código de la vista principal.
-* **Frontend interactivo:** Desarrollo puro en HTML/Vanilla JS y la librería **ApexCharts** con diseño *Glassmorphism* moderno, con modo de semaforización de riesgo económico.
-* **Automatización en la Nube:** Creación de un `cronjob` (vía GitHub Actions `.yml`) para reconstruir y desplegar automáticamente la versión estática cuando el BCRP lanza nuevas estadísticas.
-
----
-
-## 🚀 How to Run this Project / Cómo ejecutar este Proyecto
-
-Si deseas auditar o correr el pipeline localmente en tu propia consola:
-
-1. Clonar el repositorio.
-2. Instalar el entorno virtual y Requirements:
-   ```bash
-   python -m venv .venv
-   .\.venv\Scripts\Activate.ps1
-   pip install -r requirements.txt
-   ```
-3. Ejecutar los notebooks interactivos de Jupyter para ver el análisis (opcional):
-   ```bash
-   jupyter notebook notebooks/01_extraccion.ipynb
-   jupyter notebook notebooks/02_modelado_estadistico.ipynb
-   ```
-4. Generar el dashboard estático inyectando la data actualizada de la API:
+### ⚙️ Cómo compilar y auditar el proyecto
+1. Clona el repositorio en tu máquina local.
+2. Activa tu entorno virtual (`.venv`) e instala los paquetes desde `requirements.txt`.
+3. (Opcional) Audita el modelo estadístico revisando los cuadernos en la carpeta `notebooks/`.
+4. Ejecuta el compilador local para extraer la data más reciente y sincronizarla con la web automáticamente:
    ```bash
    python genera_dashboard.py
    ```
-5. Abrir el dashboard final:
-   ```bash
-   dashboard/index.html
-   ```
+5. Abre y navega en tu propio explorador el archivo ya inyectado con datos en `dashboard/index.html`.
 
 ---
-**Author / Autor:** Jair Tarrillo | Portafolio de Data Engineering & Economics 2026
+
+## 🇺🇸 English
+
+# BCRP Pipeline & Inflation Dashboard 📈💸
+[![Live Dashboard](https://img.shields.io/badge/View_Dashboard-Live-success?style=for-the-badge&logo=github)](https://jairtarrilloecon.github.io/bcrp-exchange-rate-dashboard/dashboard/)
+
+**A seamless Python ETL Pipeline alongside an econometric model to measure the 'Pass-through' effect (Exchange Rate to Inflation) consuming daily BCRP cloud data.**
+
+> Designed to perform macroeconomic analysis on the impact of the dollar upon the local Peruvian economy, presenting findings in a Premium Glassmorphism Dashboard deployed solely as a serverless static webpage.
+
+### 📌 Project Overview
+The Peruvian economy is partially dollarized. Because of this, massive shocks involving the Exchange Rate (USD/PEN) might aggressively transfer downstream into the Consumer Price Index (Inflation). This tech-economic project implements an automated ETL Pipeline communicating with the official Central Reserve Bank of Peru (BCRP) public API nodes. We modeled this "Pass-through" transfer utilizing **Econometrics (OLS Regression and Lag Analysis)** and mapped out our predictions towards a daily-updating static HTML graphical Dashboard.
+
+#### ⚙️ Architecture & Key Features
+- **Extract (BCRP Ingestion):** Optimized HTTP fetching dealing with obsolete BCRP SSL handshakes in order to standardize wild JSON nested trees into solid robust Time-Series Dataframes using Pandas.
+- **Analyze (OLS Modeling & Pass-Through):** Performing Ordinary Least Squares linear analysis utilizing `statsmodels`. Mathematical visualizations proved that the highest local inflation peak triggers exactly **4 months** after currency devaluation shock waves.
+- **Automate & Serve:** Built an aesthetic modern HTML interactive Dashboard populated by `ApexCharts`. Deploys are fully automated via `GitHub Actions` cron schedulers, calling Python routines to surgically patch DOM nodes with fresh cloud APIs.
+
+### 🛠️ Tech Stack
+- **Data Engineering:** `Python 3.x`, `Pandas`, `requests`
+- **Econometric Modeling:** `statsmodels`, `Matplotlib`, `Seaborn`
+- **Frontend Engineering:** `HTML5`, `Vanilla JS`, `ApexCharts`, `CSS Glassmorphism`
+- **Cloud & Automation:** `GitHub Actions`, `GitHub Pages`
+
+### ⚙️ How to compile safely locally
+1. Clone the repository locally.
+2. Boot your virtual environment (`.venv`) fetching pipeline dependencies located in `requirements.txt`.
+3. (Optional) Audit the mathematical assumptions by traversing through `notebooks/`.
+4. Run the data compiler script that automatically synchronizes the site with the latest APIs:
+   ```bash
+   python genera_dashboard.py
+   ```
+5. Freely browse your dashboard compiled target file at `dashboard/index.html`.
