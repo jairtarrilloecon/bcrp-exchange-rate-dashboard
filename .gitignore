@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+.env
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Data (Opcional: Si quieres que otros descarguen sus propios datos, ignora el CSV. 
+# Pero para portafolio, mejor dejarlo para que se vea algo al inicio).
+# data/*.csv
+
+# VS Code
+.vscode/
