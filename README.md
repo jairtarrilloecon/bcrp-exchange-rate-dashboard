@@ -8,7 +8,8 @@
 ## 🇪🇸 Español
 
 # Pipeline BCRP & Dashboard de Inflación 📈💸
-[![Live Dashboard](https://img.shields.io/badge/Ver_Dashboard-Live-success?style=for-the-badge&logo=github)](https://jairtarrilloecon.github.io/bcrp-exchange-rate-dashboard/dashboard/)
+### 👉 [Clic aquí para abrir la Página Web Interactiva (Dashboard Oficial)](https://jairtarrilloecon.github.io/bcrp-exchange-rate-dashboard/dashboard/)
+[![Abrir Web](https://img.shields.io/badge/ABRIR_DASHBOARD_WEB-%E2%96%B6-000000?style=for-the-badge&logo=googlechrome&logoColor=white)](https://jairtarrilloecon.github.io/bcrp-exchange-rate-dashboard/dashboard/)
 
 **Un pipeline ETL en Python y un modelo econométrico para medir el efecto 'Pass-through' (Tipo de Cambio a Inflación) usando datos en tiempo real del BCRP.**
 
@@ -43,7 +44,8 @@ La economía peruana está parcialmente dolarizada, lo que genera que los shocks
 ## 🇺🇸 English
 
 # BCRP Pipeline & Inflation Dashboard 📈💸
-[![Live Dashboard](https://img.shields.io/badge/View_Dashboard-Live-success?style=for-the-badge&logo=github)](https://jairtarrilloecon.github.io/bcrp-exchange-rate-dashboard/dashboard/)
+### 👉 [Click here to open the Interactive Website (Official Dashboard)](https://jairtarrilloecon.github.io/bcrp-exchange-rate-dashboard/dashboard/)
+[![Open Web](https://img.shields.io/badge/OPEN_WEB_DASHBOARD-%E2%96%B6-000000?style=for-the-badge&logo=googlechrome&logoColor=white)](https://jairtarrilloecon.github.io/bcrp-exchange-rate-dashboard/dashboard/)
 
 **A seamless Python ETL Pipeline alongside an econometric model to measure the 'Pass-through' effect (Exchange Rate to Inflation) consuming daily BCRP cloud data.**
 
